@@ -1,19 +1,25 @@
 import axios from 'axios';
-import { TransactionRequest } from '../types/transaction';
-import { getOmnoAuthToken } from '../utils/auth';
+import { CreateTransactionRequest } from '../types/transaction.types';
+import { getOmnoAuthToken } from '../routes/ssoAuth'
 
-const OMNO_API_URL = 'https://api.omno.com/transaction/h2h/create';
+export class OmnoService {
 
-export async function createTransaction(data: TransactionRequest) {
+  async createTransaction(data: CreateTransactionRequest) {
     
-  const authToken = await getOmnoAuthToken();
+    const authToken = await getOmnoAuthToken();
+    
+    const URL = `${process.env.OMNO_BASE_URL}${process.env.TRANS_CREATE_URL}`;
+  
+    const response = await axios.post(URL, data, {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+        'Content-Type': 'application/json',
+      },
+    });
+  
+    return response.data;
+  }
 
-  const response = await axios.post(OMNO_API_URL, data, {
-    headers: {
-      Authorization: `Bearer ${authToken}`,
-      'Content-Type': 'application/json',
-    },
-  });
-
-  return response.data;
 }
+
+export default new OmnoService();
