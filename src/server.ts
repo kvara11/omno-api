@@ -2,14 +2,13 @@ import Fastify from'fastify';
 import 'dotenv/config';
 import configureServer from './configs/serverConfig';
 
-const server = Fastify({ logger: true });
-
 
 async function main() {
   
+  const server = Fastify({ logger: true });
+  configureServer(server);
+
   try {
-    
-    configureServer(server);
 
     const port = +(process.env.PORT || 3000);
     await server.listen({ port, host: 'localhost' });
