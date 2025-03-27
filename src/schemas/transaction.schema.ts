@@ -28,9 +28,9 @@ export const CreateTransactionSchema = Type.Object({
   cardData: Type.Object({
     cardNumber: Type.String({ minLength: 16, maxLength: 16, pattern: '^[0-9]{16,16}$' }),
     cardHolderName: Type.String({ maxLength: 250 }),
-    cardExpiryDate: Type.String({ pattern: '^(0[1-9]|1[0-2])\\/([0-9]{2})$' }),
-    cardExpiryDate2: Type.String({ pattern: '^(0[1-9]|1[0-2])\\/([0-9]{2})$' }),
-    cardCvv: Type.String({ minLength: 3, maxLength: 4, pattern: '^[0-9]{3,4}$' }),
+    cardExpiryDate: Type.String({ pattern: '^(0[1-9]|1[0-2])$', description: 'Format must be (05, 12)' }),
+    cardExpiryDate2: Type.String({ pattern: '^20[2-4][0-9]$', description: 'Format must be (2026)', }),
+    cardCvv: Type.String({ minLength: 3, maxLength: 4, pattern: '^[0-9]{3,4}$', description: 'Format must be (000)' }),
     browser: Type.Object({
       colorDepth: Type.Number(),
       userAgent: Type.String(),
