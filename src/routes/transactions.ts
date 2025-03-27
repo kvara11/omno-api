@@ -1,14 +1,27 @@
 import { FastifyInstance } from 'fastify';
-import { createTransaction } from '../services/omnoService';
+import { CreateTransactionSchema } from '../schemas/transaction.schema';
+import { CreateTransactionRequest } from '../types/transaction.types';
+import omnoService from '../services/omnoService';
 
-export async function transactionRoutes(server: FastifyInstance) {
-  server.post('/create-transaction', async (request, reply) => {
+
+export function addTransactionRoutes(server: FastifyInstance) {
+
+  server.post('/create-transaction', {
+
+    schema: {
+      body: CreateTransactionSchema,
+    },
+  }, async (request, reply) => {
+
     try {
-      const transactionData = request.body;
-      const response = await createTransaction(transactionData);
-      reply.send(response);
+      
+      const transactionData = request.body as CreateTransactionRequest;
+      const response = await omnoService.createTransaction(transactionData);
+
+      reply.status(200).send(response);
+
     } catch (error) {
-      reply.status(500).send({ error: 'Transaction failed', details: error });
+      reply.send({ error: 'Failed to create transaction' });
     }
   });
 }

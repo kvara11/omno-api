@@ -5,16 +5,12 @@ const CLIENT_ID = process.env.OMNO_CLIENT_ID as string;
 const CLIENT_SECRET = process.env.OMNO_CLIENT_SECRET as string;
 
 
-const checkRequiredParams = () => {
-  if (!URL || !CLIENT_ID || !CLIENT_SECRET) {
-    throw new Error('Missing required parameters for Authentication');
-  }
-};
-
 
 export async function getOmnoAuthToken(): Promise<string> {
 
-  checkRequiredParams();
+  if (!URL || !CLIENT_ID || !CLIENT_SECRET) {
+    throw new Error('Missing required parameters for Authentication');
+  }
 
   try {
     const response: AxiosResponse = await axios.post(URL,
@@ -36,7 +32,7 @@ export async function getOmnoAuthToken(): Promise<string> {
       throw new Error('Authorization failed: No access token.');
     }
 
-    return response.data;
+    return response.data.access_token;
 
   } catch (error) {
     console.error('Error:', error);
