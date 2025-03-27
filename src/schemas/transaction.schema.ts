@@ -1,0 +1,65 @@
+import { Type } from "@sinclair/typebox";
+
+export const CreateTransactionSchema = Type.Object({
+  amount: Type.Number({ minimum: 0 }),
+  currency: Type.String(),
+  lang: Type.String(),
+  hookUrl: Type.String(),
+  callback: Type.String(),
+  callbackFail: Type.String(),
+  billing: Type.Object({
+    firstName: Type.String(),
+    lastName: Type.String(),
+    address1: Type.String(),
+    city: Type.String(),
+    state: Type.String(),
+    country: Type.String(),
+    postalCode: Type.String(),
+    phone: Type.String(),
+    email: Type.String(),
+    externalUserId: Type.String(),
+    dateOfBirth: Type.String(),
+  }),
+  orderId: Type.String(),
+  cardToken: Type.String(),
+  kycVerified: Type.Boolean(),
+  previousPaymentCount: Type.Number({ minimum: 0 }),
+  
+  cardData: Type.Object({
+    cardNumber: Type.String({ minLength: 16, maxLength: 16, pattern: '^[0-9]{16,16}$' }),
+    cardHolderName: Type.String({ maxLength: 250 }),
+    cardExpiryDate: Type.String({ pattern: '^(0[1-9]|1[0-2])\\/([0-9]{2})$' }),
+    cardExpiryDate2: Type.String({ pattern: '^(0[1-9]|1[0-2])\\/([0-9]{2})$' }),
+    cardCvv: Type.String({ minLength: 3, maxLength: 4, pattern: '^[0-9]{3,4}$' }),
+    browser: Type.Object({
+      colorDepth: Type.Number(),
+      userAgent: Type.String(),
+      language: Type.String(),
+      timeZone: Type.String(),
+      screenWidth: Type.Number(),
+      javaEnabled: Type.Boolean(),
+      customerIp: Type.String(),
+      screenHeight: Type.Number(),
+      windowHeight: Type.Number(),
+      timeZoneOffset: Type.Number(),
+      windowWidth: Type.Number(),
+    }),
+  }),
+  saveCard: Type.Boolean(),
+  payment3dsType: Type.Optional(Type.String({ default: 'Redirection'})),
+  merchantInformation: Type.Optional(
+    Type.Object({
+      name: Type.String({ minLength: 1, maxLength: 22 }),
+      merchantName: Type.Optional(Type.String({ maxLength: 150 })),
+      country: Type.Optional(Type.String({ minLength: 2, maxLength: 2 })),
+      address1: Type.Optional(Type.String()),
+      administrativeArea: Type.Optional(Type.String()),
+      locality: Type.Optional(Type.String()),
+      postalCode: Type.Optional(Type.String()),
+      url: Type.Optional(Type.String()),
+      customerServicePhoneNumber: Type.Optional(Type.String()),
+      categoryCode: Type.Optional(Type.String()),
+      noteToBuyer: Type.Optional(Type.String()),
+    })
+  )
+});
