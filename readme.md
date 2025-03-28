@@ -10,30 +10,31 @@
 
 <h3>Installation:</h3>
 
--git clone https://github.com/your-repo.git
+-git clone https://github.com/your-repo.git</br>
 -npm install
 
 create .env and add following variables
 
+<pre>
 SERVER_URL=localhost
 PORT=3000
 
 AUTH_FULL_URL=https://sso.omno.com/realms/omno/protocol/openid-connect/token
 
-OMNO_CLIENT_ID=
-OMNO_CLIENT_SECRET=
+OMNO_CLIENT_ID=api-key
+OMNO_CLIENT_SECRET=api-secret
 
 OMNO_BASE_URL=https://api.omno.com
 TRANS_CREATE_URL=/transaction/h2h/create
-
-run in development env.
+</pre>
+run in development env.</br>
 -npm run dev
 
-run in development env.
--npm run build
+run in development env.</br>
+-npm run build</br>
 -npm start
 
-If using Docker, build and run the container:
+If using Docker, build and run the container:</br>
 -docker-compose up --build
 
 <h3>Swagger:</h3>
