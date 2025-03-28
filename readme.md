@@ -3,9 +3,9 @@
 
 <h3>Project Setup</h3>
 
-*Node.js (>=16.x)
-*npm
-*Docker(optional)
+*Node.js (>=16.x)</br>
+*npm</br>
+*Docker(optional)</br>
 
 
 <h3>Installation:</h3>
