@@ -1,4 +1,4 @@
-<h1>Fastify Omno API Integration</h1>
+<h1>Omno API Integration with Fastify Framework</h1>
 
 
 <h3>Project Setup</h3>
