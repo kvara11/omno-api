@@ -1,6 +1,6 @@
-import Fastify from'fastify';
+import Fastify from 'fastify';
 import 'dotenv/config';
-import configureServer from './configs/serverConfig';
+import configureServer from './src/configs/serverConfig';
 
 
 async function main() {

@@ -1,12 +1,10 @@
-
 import { FastifyInstance } from 'fastify';
 import fastifyCors from '@fastify/cors';
 import fastifyHelmet from '@fastify/helmet';
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
-
 import { addTransactionRoutes } from '../routes/transactions';
-import { webhookRoutes } from '../routes/webhooks';
+
 
 export default function configureServer(server: FastifyInstance) {
 
@@ -42,7 +40,7 @@ export default function configureServer(server: FastifyInstance) {
     });
 
     server.register(fastifySwaggerUi, {
-        routePrefix: '/docs',
+        routePrefix: '/api-docs',
         uiConfig: {
             docExpansion: 'full',
             deepLinking: false

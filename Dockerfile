@@ -1,21 +1,15 @@
-FROM node:18-alpine
+FROM node:20.16-alpine3.19
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Copy package files first for better caching
-COPY package*.json ./
+COPY package*.json .
 
-# Install dependencies
 RUN npm install
 
-# Copy entire project
 COPY . .
 
-# Build TypeScript
 RUN npm run build
 
-# Expose port
 EXPOSE 3000
 
-# Command to run the application
 CMD ["npm", "start"]
