@@ -1,14 +1,14 @@
-Fastify Omno API Integration
+<h1>Fastify Omno API Integration</h1>
 
 
-Project Setup
+<h3>Project Setup</h3>
 
 *Node.js (>=16.x)
 *npm
 *Docker(optional)
 
 
-Installation:
+<h3>Installation:</h3>
 
 -git clone https://github.com/your-repo.git
 -npm install
@@ -36,13 +36,13 @@ run in development env.
 If using Docker, build and run the container:
 -docker-compose up --build
 
-Swagger:
+<h3>Swagger:</h3>
 /api-docs
 
-ROUTES:
+<h3>ROUTES:</h3>
 
 POST /create-transaction - Initiates a new transaction.
 
-POST /webhook - Handles incoming webhooks from Omno.
-POST /callback - Handles incoming webhooks success callback.
-POST /callback-fail - Handles incoming webhooks failed callback.
+POST /webhook - Handles incoming webhooks from Omno. </br>
+POST /callback - Handles incoming webhooks success callback. </br>
+POST /callback-fail - Handles incoming webhooks failed callback. </br>
