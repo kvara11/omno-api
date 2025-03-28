@@ -6,8 +6,6 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=production
-      - OMNO_CLIENT_ID=${OMNO_CLIENT_ID}
-      - OMNO_CLIENT_SECRET=${OMNO_CLIENT_SECRET}
     volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - .:/app
+      - /app/node_modules
