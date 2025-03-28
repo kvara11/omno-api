@@ -22,7 +22,6 @@ export class OmnoService {
 
 
  async getOmnoAuthToken(): Promise<string> {
-
   
   const URL = process.env.AUTH_FULL_URL as string;
   const CLIENT_ID = process.env.OMNO_CLIENT_ID as string;
@@ -47,11 +46,11 @@ export class OmnoService {
       }
     );
 
-
     if (!response.data.access_token) {
       throw new Error('Authorization failed: No access token.');
     }
 
+    
     return response.data.access_token;
 
   } catch (error) {

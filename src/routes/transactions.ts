@@ -16,6 +16,10 @@ export function addTransactionRoutes(server: FastifyInstance) {
     try {
       
       const transactionData = request.body as CreateTransactionRequest;
+      transactionData.hookUrl = `${process.env.SERVER_URL}:${process.env.PORT}/webhook`;
+      transactionData.callback = `${process.env.SERVER_URL}:${process.env.PORT}/callback`;
+      transactionData.callbackFail = `${process.env.SERVER_URL}:${process.env.PORT}/callback-fail`;
+      
       const response = await omnoService.createTransaction(transactionData);
 
       reply.status(200).send(response);

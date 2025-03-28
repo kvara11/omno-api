@@ -9,11 +9,16 @@ async function main() {
   configureServer(server);
 
   try {
+    
+    if (!process.env.PORT || !process.env.SERVER_URL) {
+      throw new Error("Server configurations is not set!");
+    }
+    
+    const port = +(process.env.PORT);
+    const host = process.env.SERVER_URL;
+    await server.listen({ port, host });
 
-    const port = +(process.env.PORT || 3000);
-    await server.listen({ port, host: 'localhost' });
-
-    console.log(`Server running at http://localhost:${port}`);
+    console.log(`Server running at ${host}:${port}`);
 
   } catch (err) {
     server.log.error(err);
